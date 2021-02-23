@@ -1,32 +1,30 @@
 from enum import IntEnum
 
 
-class PacketMode(IntEnum):
-    PACKETMODE_OFF = 0
-    PACKETMODE_ON = 1
-
-
-class FontProportion(IntEnum):
-    FONT_FIXEDSPACE = 0
-    FONT_PROPORTIONAL = 1
-
-
 class GraphicOrientation(IntEnum):
+    """Argument type used in 'send_write_mode'."""
+
     ORIENTATION_HORIZONTAL = 0
     ORIENTATION_VERTICAL = 1
 
 
 class CursorMovement(IntEnum):
+    """Argument type used in 'send_write_mode'."""
+
     MOVEMENT_HORIZONTAL = 0
     MOVEMENT_VERTICAL = 1
 
 
 class CursorDirection(IntEnum):
+    """Argument type used in 'send_write_mode'."""
+
     DIRECTION_FORWARD = (0,)
     DIRECTION_BACKWARDS = 1
 
 
 class UnderScoreCursor(IntEnum):
+    """Argument type used in 'send_write_mode'."""
+
     UNDERSCORECURSOR_STATICOFF = 0
     UNDERSCORECURSOR_FLASHOFF = 1
     UNDERSCORECURSOR_STATICON = 2
@@ -34,28 +32,45 @@ class UnderScoreCursor(IntEnum):
 
 
 class PenType(IntEnum):
+    """Argument type used in 'send_write_mode'."""
+
     PENTYPE_OVER = 0
     PENTYPE_AND = 1
     PENTYPE_OR = 2
     PENTYPE_XOR = 3
 
 
+class PacketMode(IntEnum):
+    """Argument type used in 'set_serial_config'."""
+
+    PACKETMODE_OFF = 0
+    PACKETMODE_ON = 1
+
+
 class AutomaticSend(IntEnum):
+    """Argument type used in 'set_serial_config'."""
+
     AUTOMATICSEND_OFF = 0
     AUTOMATICSEND_ON = 1
 
 
 class CommsBuffer(IntEnum):
+    """Argument type used in 'set_serial_config'."""
+
     COMMSBUFFER_OFF = 0
     COMMSBUFFER_ON = 1
 
 
 class Parity(IntEnum):
+    """Argument type used in 'set_serial_config'."""
+
     PARITY_NONE = 0
     PARITY_EVEN = 1
 
 
 class BaudeRate(IntEnum):
+    """Argument type used in 'set_serial_config'."""
+
     BAUDRATE_4800 = 0
     BAUDRATE_9600 = 1
     BAUDRATE_19200 = 2
@@ -67,12 +82,16 @@ class BaudeRate(IntEnum):
 
 
 class FontFace(IntEnum):
+    """Argument type used in 'select_font'."""
+
     PROPORTIONAL_MINI = 0x1C
     FIXEDSPACED_5X7 = 0x1D
     FIXEDSPACED_10x14 = 0x1E
 
 
 class ExtendedFontFace(IntEnum):
+    """Argument type used in 'select_extended_font'."""
+
     FONTFACE_5x5A = 0x00
     FONTFACE_5x7A = 0x01
     FONTFACE_10x14A = 0x02
@@ -81,7 +100,16 @@ class ExtendedFontFace(IntEnum):
     FONTFACE_10x14C = 0x05
 
 
+class FontProportion(IntEnum):
+    """Argument type used in 'select_extended_font'."""
+
+    FONT_FIXEDSPACE = 0
+    FONT_PROPORTIONAL = 1
+
+
 class FontSpace(IntEnum):
+    """Argument type used in 'select_extended_font'."""
+
     FONTSPACE_1PIXEL = 0
     FONTSPACE_2PIXEL = 1
     FONTSPACE_3PIXEL = 2
@@ -93,6 +121,8 @@ class FontSpace(IntEnum):
 
 
 class WindowMode(IntEnum):
+    """Argument type used in 'set_window_mode'."""
+
     WINDOWMODE_INVERT = 0
     WINDOWMODE_CLEAR = 1
     WINDOWMODE_FILL = 2
@@ -100,6 +130,8 @@ class WindowMode(IntEnum):
 
 
 class FlashTime(IntEnum):
+    """Argument type used in 'set_window_flash_speed'."""
+
     FLASHTIME_15ms = 0
     FLASHTIME_30ms = 1
     FLASHTIME_45ms = 2
@@ -119,6 +151,8 @@ class FlashTime(IntEnum):
 
 
 class WipeEffect(IntEnum):
+    """Argument type used in 'set_window_wipe_effect'."""
+
     WIPEEFFECT_LEFT_TO_RIGHT_COVER = 0x00
     WIPEEFFECT_RIGHT_TO_LEFT_COVER = 0x01
     WIPEEFFECT_TOP_TO_BOTTOM_COVER = 0x02
@@ -134,6 +168,8 @@ class WipeEffect(IntEnum):
 
 
 class WipeSpeed(IntEnum):
+    """Argument type used in 'set_window_wipe_speed'."""
+
     WIPESPEED_HALT = 0x00
     WIPESPEED_17HZ = 0x01
     WIPESPEED_35HZ = 0x02
@@ -154,6 +190,8 @@ class WipeSpeed(IntEnum):
 
 
 class PatternType(IntEnum):
+    """Argument type used in 'select_window_pattern'."""
+
     PATTERNTYPE_FULL = 0x00
     PATTERNTYPE_HALF = 0x01
     PATTERNTYPE_45ASCEND = 0x02
@@ -173,26 +211,36 @@ class PatternType(IntEnum):
 
 
 class InvertPattern(IntEnum):
+    """Argument type used in 'set_window_pattern_option'."""
+
     INVERTPATTERN_OFF = 0
     INVERTPATTERN_ON = 1
 
 
 class PatternAlignment(IntEnum):
+    """Argument type used in 'set_window_pattern_option'."""
+
     PATTERNALIGNMENT_OFF = 0
     PATTERNALIGNMENT_ON = 1
 
 
 class PatternAlignV(IntEnum):
+    """Argument type used in 'set_window_pattern_option'."""
+
     PATTERNALIGN_BOTTOM = 0
     PATTERNALIGN_TOP = 1
 
 
 class PatternAlignH(IntEnum):
+    """Argument type used in 'set_window_pattern_option'."""
+
     PATTERNALIGN_RIGHT = 0
     PATTERNALIGN_LEFT = 1
 
 
 class ScrollSpeed(IntEnum):
+    """Argument type used in 'set_scroll_speed'."""
+
     SCROLLSPEED_HALT = 0x00
     SCROLLSPEED_35HZ = 0x01
     SCROLLSPEED_70HZ = 0x02
@@ -205,16 +253,22 @@ class ScrollSpeed(IntEnum):
 
 
 class PadEndOfText(IntEnum):
+    """Argument type used in 'set_scroll_text_in_window'."""
+
     PADENDOFTEXT_OFF = 0
     PADENDOFTEXT_ON = 1
 
 
 class ScrollContents(IntEnum):
+    """Argument type used in 'set_scroll_text_in_window'."""
+
     SCROLLCONTENTS_OFF = 0
     SCROLLCONTENTS_ON = 1
 
 
 class ScrollDirection(IntEnum):
+    """Argument type used in 'set_scroll_text_in_window'."""
+
     SCROLLDIRECTION_UP = 0
     SCROLLDIRECTION_DOWN = 1
     SCROLLDIRECTION_LEFT = 2
@@ -222,6 +276,8 @@ class ScrollDirection(IntEnum):
 
 
 class Luminance(IntEnum):
+    """Argument type used in 'set_auto_fade'."""
+
     LUMINANCE_0 = 0
     LUMINANCE_14 = 1
     LUMINANCE_28 = 2
@@ -233,6 +289,8 @@ class Luminance(IntEnum):
 
 
 class FadeSpeed(IntEnum):
+    """Argument type used in 'set_auto_fade'."""
+
     FADESPEED_FASTEST = 0
     FADESPEED_FAST = 1
     FADESPEED_SLOW = 2

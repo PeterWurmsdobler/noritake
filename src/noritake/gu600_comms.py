@@ -12,6 +12,7 @@ BRIGHTNESS_LEVELS = 8
 
 class GU600Comms:
     def write(self, message: List[int]) -> bool:
+        """Write bytes to an underlying communications channel."""
         pass
 
 

@@ -4,7 +4,7 @@ GU600 series.
 
 ## Prerequisistes
 
-This package is written in Python 3.8.
+This package is written for Python 3.7.
 
 This driver was designed to work for both asynchronous serial (UART and RS232) and synchronous communications such as SPI and I2C. For SPI to work the python driver has to be installed:
 
@@ -21,5 +21,6 @@ sudo python3.8 ./setup.py install
 Run on a command shell:
 
 ```bash
-python3.8 tests/display.py
+python3.7 test/test_text.py
+python3.7 test/test_graphic.py
 ```

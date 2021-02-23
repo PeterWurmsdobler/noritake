@@ -52,26 +52,28 @@ def main() -> None:
 
     spi = GU600CommsSPI(0, 0)
     vfd = GU600.GU600Driver(spi)
-    vfd.send_ClearArea(0, 0, 240, 64)
-    vfd.send_WriteMode(
+    vfd.clear_area(0, 0, 240, 64)
+    vfd.set_write_mode(
         GraphicOrientation.ORIENTATION_HORIZONTAL,
         CursorMovement.MOVEMENT_VERTICAL,
         CursorDirection.DIRECTION_FORWARD,
         UnderScoreCursor.UNDERSCORECURSOR_STATICOFF,
+        PenType.PENTYPE_OVER,
     )
-    vfd.send_CursorPosition(0x1F, 0x1C)
-    vfd.send_GraphicWrite(mandl)
+    vfd.set_cursor_position(0x1F, 0x1C)
+    vfd.write_graphic(mandl)
 
-    vfd.send_WriteMode(
+    vfd.set_write_mode(
         GraphicOrientation.ORIENTATION_VERTICAL,
         CursorMovement.MOVEMENT_HORIZONTAL,
         CursorDirection.DIRECTION_FORWARD,
         UnderScoreCursor.UNDERSCORECURSOR_STATICOFF,
+        PenType.PENTYPE_OVER,
     )
-    vfd.send_CursorPosition(0x48, 0x08)
-    vfd.send_GraphicWrite(cyclist1)
-    vfd.send_CursorPosition(0x48, 0x10)
-    vfd.send_GraphicWrite(cyclist2)
+    vfd.set_cursor_position(0x48, 0x08)
+    vfd.write_graphic(cyclist1)
+    vfd.set_cursor_position(0x48, 0x10)
+    vfd.write_graphic(cyclist2)
 
 
 if __name__ == "__main__":

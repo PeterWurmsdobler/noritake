@@ -13,14 +13,14 @@ def main() -> None:
 
     spi = GU600CommsSPI(0, 0)
     vfd = GU600.GU600Driver(spi)
-    vfd.send_ClearArea(0, 0, 240, 64)
-    vfd.send_SelectExtendedFont(
+    vfd.clear_area(0, 0, 240, 64)
+    vfd.select_extended_font(
         ExtendedFontFace.FONTFACE_7x15A,
         FontProportion.FONT_FIXEDSPACE,
         FontSpace.FONTSPACE_1PIXEL,
     )
     for i in range(4):
-        vfd.send_Text(0, i * 17 + 16, text[i])
+        vfd.write_text(0, i * 17 + 16, text[i])
 
 
 if __name__ == "__main__":
