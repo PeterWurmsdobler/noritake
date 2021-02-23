@@ -1,16 +1,6 @@
-import sys
-
 import noritake.gu600_driver as GU600
-from noritake.gu600_enums import *
 from noritake.gu600_comms import GU600CommsSPI
-
-
-def usage() -> None:
-    print("vfd.py <command> [args...]")
-    print("     write <string>")
-    print("     goto <x> <y>")
-    print("     cls")
-    sys.exit(-1)
+from noritake.gu600_enums import *
 
 
 def main() -> None:
@@ -18,7 +8,7 @@ def main() -> None:
         "Glenn Gould (1982)       -12dB",
         "Johann Sebastian Bach         ",
         "Goldberg Variations           ",
-        "Variatio 10.                  ",
+        "Variatio 10.             01:12",
     ]
 
     spi = GU600CommsSPI(0, 0)
