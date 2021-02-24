@@ -1,5 +1,6 @@
-import noritake.gu600_driver as GU600
 from noritake.gu600_comms import GU600CommsSPI
+from noritake.gu600_config import GU600Models
+from noritake.gu600_driver import GU600Driver
 from noritake.gu600_enums import *
 
 
@@ -50,9 +51,10 @@ def main() -> None:
         0x00,
     ]
 
+    cfg = GU600Models["GU240x64D-K612A8"]
     spi = GU600CommsSPI(0, 0)
-    vfd = GU600.GU600Driver(spi)
-    vfd.clear_area(0, 0, 240, 64)
+    vfd = GU600Driver(spi, cfg)
+    vfd.clear_all()
     vfd.set_write_mode(
         GraphicOrientation.ORIENTATION_HORIZONTAL,
         CursorMovement.MOVEMENT_VERTICAL,

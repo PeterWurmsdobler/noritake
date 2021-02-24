@@ -1,6 +1,7 @@
 from typing import List
 
 from noritake.gu600_comms import GU600Comms
+from noritake.gu600_config import GU600Config
 from noritake.gu600_enums import *
 
 PACKET_HEADER = 0x02
@@ -11,12 +12,17 @@ BRIGHTNESS_LEVELS = 8
 
 
 class GU600Driver:
-    def __init__(self, comms_link: GU600Comms) -> None:
-        self.comms_link = comms_link
+    def __init__(self, comms_link: GU600Comms, config: GU600Config) -> None:
+        self._comms_link = comms_link
+        self._config = config
+
+    @property
+    def config(self) -> GU600Config:
+        return self._config
 
     def write(self, message: List[int]) -> bool:
         """Write a sequence of words to device."""
-        return self.comms_link.write(message)
+        return self._comms_link.write(message)
 
     def send_dummy_byte(self) -> bool:
         """Send a dummy byte."""
@@ -77,6 +83,10 @@ class GU600Driver:
         """Clear specified area. All dots within the specified area are cleared. Please note that the cursor
         position is affected with this command."""
         return self._send_area_command(0x12, left, top, right, bottom)
+
+    def clear_all(self) -> bool:
+        """Clear entire screen. Please note that the cursor position is affected with this command."""
+        return self.clear_area(0, 0, self._config.width - 1, self._config.height - 1)
 
     def invert_area(self, left: int, top: int, right: int, bottom: int) -> bool:
         """Invert specified area. All dots within the specified area are inverted. Please note that the cursor

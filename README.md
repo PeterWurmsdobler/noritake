@@ -1,26 +1,63 @@
 # Noritake Display driver
 
-GU600 series.
+This repository implements a driver for the Noritake Itron GU600 series of VFDs.
 
 ## Prerequisistes
 
-This package is written for Python 3.7.
+This package is written for Python 3.7. Make sure python3.8 is installed on your system.
 
-This driver was designed to work for both asynchronous serial (UART and RS232) and synchronous communications such as SPI and I2C. For SPI to work the python driver has to be installed:
+```commandline
+user@host:~$ sudo apt-get update
+user@host:~$ sudo apt-get -y install python3.8-dev
+```
 
-```bash
-sudo apt-get update
-sudo apt-get -y install python3.8-dev
-git clone https://github.com/doceme/py-spidev.git
-cd py-spidev
-sudo python3.8 ./setup.py install
+This driver was designed to work for both asynchronous (UART and RS232) and synchronous communications such as SPI and I2C. 
+
+For SPI to work the python driver has to be installed:
+
+```commandline
+user@host:~$ git clone https://github.com/doceme/py-spidev.git
+user@host:~$ cd py-spidev
+user@host:~$ sudo python3.7 ./setup.py install
+```
+
+## Install
+
+Install the package by cloning the repository, change into the repo and run the installation, like:
+
+```commandline
+user@host:~$ git clone https://github.com/PeterWurmsdobler/noritake.git
+user@host:~$ cd noritake
+user@host:~$ sudo python3.7 ./setup.py install
 ```
 
 ## Test
 
-Run on a command shell:
+Provided the package has been installed, run on a command shell:
 
-```bash
-python3.7 test/test_text.py
-python3.7 test/test_graphic.py
+```commandline
+user@host:~$ python3.7 test/test_text.py
+user@host:~$ python3.7 test/test_graphic.py
+```
+
+## Usage
+
+Provided the package has been installed, you can create a python program:
+
+```python
+from noritake.gu600_comms import GU600CommsSPI
+from noritake.gu600_config import GU600Models
+from noritake.gu600_driver import GU600Driver
+from noritake.gu600_enums import ExtendedFontFace, FontProportion, FontSpace
+
+cfg = GU600Models["GU240x64D-K612A8"]
+spi = GU600CommsSPI(0, 0)
+vfd = GU600Driver(spi, cfg)
+vfd.clear_all()
+vfd.select_extended_font(
+    ExtendedFontFace.FONTFACE_7x15A,
+    FontProportion.FONT_FIXEDSPACE,
+    FontSpace.FONTSPACE_1PIXEL,
+)
+vfd.write_text(10, 20, "Hello World")
 ```

@@ -1,6 +1,7 @@
-import noritake.gu600_driver as GU600
 from noritake.gu600_comms import GU600CommsSPI
-from noritake.gu600_enums import *
+from noritake.gu600_config import GU600Models
+from noritake.gu600_driver import GU600Driver
+from noritake.gu600_enums import ExtendedFontFace, FontProportion, FontSpace
 
 
 def main() -> None:
@@ -11,9 +12,10 @@ def main() -> None:
         "Variatio 10.             01:12",
     ]
 
+    cfg = GU600Models["GU240x64D-K612A8"]
     spi = GU600CommsSPI(0, 0)
-    vfd = GU600.GU600Driver(spi)
-    vfd.clear_area(0, 0, 240, 64)
+    vfd = GU600Driver(spi, cfg)
+    vfd.clear_all()
     vfd.select_extended_font(
         ExtendedFontFace.FONTFACE_7x15A,
         FontProportion.FONT_FIXEDSPACE,
