@@ -4,22 +4,43 @@ This repository implements a driver for the Noritake Itron GU600 series of VFDs.
 
 ## Prerequisistes
 
-This package is written for Python 3.7. Make sure python3.8 is installed on your system.
+The prerequisites for this package are in essence Python 3.7 and an SPI driver.
+
+### Python 3.7
+
+To install python 3.7 on a normal Raspberry Pi4 use `apt-get`:
 
 ```commandline
 user@host:~$ sudo apt-get update
-user@host:~$ sudo apt-get -y install python3.8-dev
+user@host:~$ sudo apt-get -y install python3.7-dev
 ```
 
-This driver was designed to work for both asynchronous (UART and RS232) and synchronous communications such as SPI and I2C. 
+If Python 3.7 is not available as Debian package, then follow the instructions on [Install Python 3.7 on Raspberry PI](https://installvirtual.com/install-python-3-7-on-raspberry-pi/) to install from source. Only replace `3.7.0` with `3.7.9` to get the latest of `3.7`.
 
-For SPI to work the python driver has to be installed:
+
+### SPI driver
+
+This driver was designed to work for both asynchronous (UART and RS232) and synchronous communications such as SPI and I2C. For SPI to work the python driver has to be installed:
 
 ```commandline
 user@host:~$ git clone https://github.com/doceme/py-spidev.git
 user@host:~$ cd py-spidev
 user@host:~$ sudo python3.7 ./setup.py install
 ```
+
+### Pi4 pin assignments
+
+If the Noritake Itron GU600 VFD is connected to a Raspberry Pi4, then the following pins have to be connected to enable communication over SPI0:
+
+| VFD pin | VFD signal  | RPi4 pin | RPi4 signal          |
+| :-----: |:------------| :------: |:---------------------|
+|    1    |    VCC      |    2     |  5V Power            |
+|    2    |    SCK      |   23     |  GPIO 11 (SPI0 SCLK) |
+|    3    |    /SS      |   24     |  GPIO  8 (SPI0 CE0)  |
+|    4    |    SIN      |   19     |  GPIO 10 (SPI0 MOSI) |
+|    5    |    GND      |   20     |  Ground              |
+|    6    |    SOUT     |   21     |  GPIO  9 (SPI0 MISO) |
+
 
 ## Install
 
